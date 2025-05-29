@@ -10,6 +10,7 @@ body {
 }
 /*
 :root {
+  --border-color: #c8b164;
   --bg-color: #000000;
   --fg-color: #eed275;
   --btn-bg-color: #636361;
@@ -23,6 +24,7 @@ body {
 */
 
 :root {
+  --border-color: #797ca7;
   --bg-color: #000000;
   --fg-color: #c5c8fa;
   --btn-bg-color: #69698c;
@@ -34,15 +36,36 @@ body {
   --del-btn-hover-color: rgb(105, 23, 213);
 }
 
+/*light mode
+:root {
+  --border-color: #676ef8;
+  --bg-color: #ffffff;
+  --fg-color: #5058f7;
+  --btn-bg-color: #5058f7;
+  --btn-border-color: #5058f7;
+  --btn-fg-color: #ffffff;
+  --txt-ar-bg-color: #ffffff;
+  --li-bg-color: #d5d5f5;
+  --del-btn-color: #5058f7;
+  --del-btn-hover-color: #3e46e3;
+}
+*/
+
 #root {
-  width: 80%;
+  width: 100%;
   min-width: 300px;
 }
 main {
   width: 100%;
-  max-width: 500px;
+  max-width: 580px;
   min-width: 300px;
   margin: auto;
+  padding: 0 10px 0 10px;
+}
+.app-border {
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  padding: 0 20px 0 20px;
 }
 h1, p {
  color: var(--fg-color);

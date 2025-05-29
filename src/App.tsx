@@ -28,6 +28,7 @@ function App() {
 
   return (
     <main>
+      <div className="app-border">
       {/*added*/}
       <h1>Notes To Self</h1>
       {/*
@@ -56,6 +57,7 @@ function App() {
       <button onClick={signOut}>Sign out</button>
       */}
       {/*end added*/}
+      </div>
     </main>
   );
 }
