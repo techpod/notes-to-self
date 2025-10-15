@@ -22,7 +22,7 @@ body {
   --del-btn-hover-color: rgb(90, 58, 4);
 }
 */
-
+/*previous until 02oct2025
 :root {
   --border-color: #797ca7;
   --bg-color: #000000;
@@ -32,6 +32,34 @@ body {
   --btn-fg-color: #eaeff9;
   --txt-ar-bg-color: #c5c8fa;
   --li-bg-color: #c5c8fa;
+  --del-btn-color: rgb(116, 78, 213);
+  --del-btn-hover-color: rgb(105, 23, 213);
+}
+*/
+/*current 02oct2025*/
+/*
+:root {
+  --border-color: #9699bc;
+  --bg-color: #000000;
+  --fg-color: #ffffff;
+  --btn-bg-color: rgba(180, 39, 219, 1);
+  --btn-border-color: rgba(180, 39, 219, 1);
+  --btn-fg-color: #ffffff;
+  --txt-ar-bg-color: #f1c5fa;
+  --li-bg-color: #f1c5fa;
+  --del-btn-color: rgb(116, 78, 213);
+  --del-btn-hover-color: rgb(105, 23, 213);
+}
+*/
+:root {
+  --border-color: #9699bc;
+  --bg-color: #000000;
+  --fg-color: #ffffff;
+  --btn-bg-color: rgba(170, 14, 214, 1);
+  --btn-border-color: rgba(170, 14, 214, 1);
+  --btn-fg-color: #ffffff;
+  --txt-ar-bg-color: #f1c5fa;
+  --li-bg-color: #f1c5fa;
   --del-btn-color: rgb(116, 78, 213);
   --del-btn-hover-color: rgb(105, 23, 213);
 }
@@ -71,7 +99,7 @@ h1, p {
  color: var(--fg-color);
 }
 button{
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid var(--btn-border-color);
   padding: 0.6em 1.2em;
   margin-top: 12px;
@@ -92,6 +120,28 @@ button:focus,
 button:focus-visible {
   outline: 1px auto -webkit-focus-ring-color;
 }
+.app-name {
+  display: flex;
+  justify-content: center;
+  color: var(--fg-color);
+  font-family: orbitron;
+  letter-spacing: 3px;
+  font-size: 50px;
+  font-weight: bold;
+  border-bottom: solid 4px rgba(148, 56, 240, 1);
+}
+.profile-banner {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto 10px auto;
+  background-image: linear-gradient(180deg, rgba(180, 39, 219, 1) 10%, rgba(87, 16, 168, 1) 100%);
+  width: 100%;
+  height: 100px;
+  border-radius: 6px;
+  border: 2px solid #000;
+  padding-top: 10px;
+}
+/*
 #so-btn {
   background: none;
   border: none;
@@ -105,6 +155,24 @@ button:focus-visible {
 #so-btn:hover {
   text-decoration: underline;
 }
+*/
+#top-so-btn {
+  background: none;
+  background-color: var(--btn-bg-color);
+  border: 1px solid var(--btn-border-color);
+  border-radius: 6px;
+  color: var(--fg-color);
+  cursor: pointer;
+  text-decoration: none;
+  width: 30%;
+  height: 32px;
+  text-align: center;
+  padding: 0 0 2px 0;
+  margin: 0 0 24px 0;
+}
+#top-so-btn:hover {
+  border-color: var(--fg-color);
+}
 p {
   padding: 0;
   margin: 0;
@@ -115,7 +183,7 @@ label {
 }
 textarea {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 6px;
   resize: none;
   padding: 5px;
   background-color: var(--txt-ar-bg-color);
@@ -171,16 +239,18 @@ li {
   font-family: inherit;
   padding: 0.6em 1.2em;
   margin-bottom: 12px;
-  border-radius: 8px;
+  border-radius: 6px;
   width: 100%;
 }
 li:hover {
   background-color: var(--li-bg-color);
 }
+/*
 a {
   font-weight: 800;
   text-decoration: none;
 }
+*/
 .material-symbols-outlined {
   color: var(--del-btn-color);
   float: right;

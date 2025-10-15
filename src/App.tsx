@@ -28,16 +28,35 @@ function App() {
 
   return (
     <main>
+      <div className="app-name">Notes To Self</div>
+        <div className="profile-banner">
+        <img
+          src="/nts_profile_image.png"
+          alt="User Avatar"
+          style={{
+            width: "80px",
+            height: "80px",
+            borderRadius: "50%",
+            objectFit: "cover",
+          }}
+        />
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+      <p>Signed in as: {user?.signInDetails?.loginId}</p>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", margin: "20px 0" }}>
+      <button id="top-so-btn" onClick={signOut}>Sign out</button>
+      </div>
       <div className="app-border">
       {/*added*/}
-      <h1>Notes To Self</h1>
+      {/*<h1>Notes To Self</h1>*/}
       {/*
       <h1>{user?.signInDetails?.loginId}'s todos</h1>
       */}
-      <p>Signed in as: {user?.signInDetails?.loginId}</p>
+      {/*<p>Signed in as: {user?.signInDetails?.loginId}</p>*/}
       {/*end added*/}
       {/*<button onClick={createTodo}>+ Add New Note</button>*/}
-      <button id="so-btn" onClick={signOut}>Sign out</button>
+      {/*<button id="so-btn" onClick={signOut}>Sign out</button>*/}
       <DisplayForm />
       <ul>
         {todos.map((todo) => (

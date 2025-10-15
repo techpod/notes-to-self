@@ -8,7 +8,7 @@ const client = generateClient<Schema>();
 function DisplayForm() {
     const [showForm, setShowForm] = useState(false);
     const [inputValue, setInputValue] = useState("");
-
+{/*
     const formWrapStyle = {
       display: showForm ? "block" : "none",
       border: '1px solid var(--fg-color)',
@@ -17,12 +17,22 @@ function DisplayForm() {
       padding: '10px',
       marginBottom: '12px',
     };
+*/}
+    const formWrapStyle = {
+      display: showForm ? "block" : "none",
+      width: '100%',
+      borderRadius: '8px',
+      padding: '10px',
+      marginBottom: '12px',
+    };
 
     const nwFrmBtnStyle = {
       transition: 'opacity 1s, color 1s',
-      opacity: showForm ? '.4' : '1',
+      opacity: showForm ? '.6' : '1',
       color: showForm ? '#ccc' : 'var(--btn-fg-color)',
       cursor: showForm ? 'auto' : 'pointer',
+      marginTop: '21px',
+      ...(showForm ? { borderColor: 'var(--btn-border-color)'} : {}),
     };
 
   const [isLoading, setIsLoading] = useState(false);
