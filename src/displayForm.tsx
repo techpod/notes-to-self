@@ -28,7 +28,7 @@ function DisplayForm() {
 
     const nwFrmBtnStyle = {
       transition: 'opacity 1s, color 1s',
-      opacity: showForm ? '.6' : '1',
+      opacity: showForm ? '.7' : '1',
       color: showForm ? '#ccc' : 'var(--btn-fg-color)',
       cursor: showForm ? 'auto' : 'pointer',
       marginTop: '21px',
@@ -44,24 +44,18 @@ function DisplayForm() {
     }, 20);
 
     if (inputValue !== "") {
-    setIsLoading(true);
-    try {
-      await client.models.Todo.create({ content: inputValue });
-      handleCloseForm();
-    } catch (error) {
-      console.error("Error creating Todo:", error);
-    } finally {
-      //setTimeout(() => {
-        setIsLoading(false);
-      //}, 3000);
-      //setTimeout(() => {
-        //handleCloseForm();
-      //}, 6000);
-    }
+      setIsLoading(true);
+      try {
+        await client.models.Todo.create({ content: inputValue });
+        handleCloseForm();
+      } catch (error) {
+        console.error("Error creating Todo:", error);
+      } finally {
+          setIsLoading(false);
+      }
     }
   };
-  const Plswt = () => {
-    return (
+  const Plswt = () => (
     <div className="plswt" style={{ textAlign: "center", margin: "10px 0" }}>
       <div
         style={{
@@ -84,14 +78,12 @@ function DisplayForm() {
       </style>
     </div>
   );
-}
 
   if (isLoading) {
     return <Plswt />;
   }
   
     const handleCloseForm = () => {
-      //setInputValue("");
       setShowForm(false);
       setInputValue("");
     };

@@ -17,8 +17,7 @@ const client = generateClient<Schema>();
       overflow: 'hidden',
     };
 
-    const Plswt = () => {
-      return (
+    const Plswt = () => (
       <div className="plswt" style={{ textAlign: "center", margin: "10px 0" }}>
         <div
           style={{
@@ -41,7 +40,6 @@ const client = generateClient<Schema>();
         </style>
       </div>
     );
-  }
   
     if (isLoading) {
       return <Plswt />;
