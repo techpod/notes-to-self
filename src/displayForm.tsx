@@ -32,7 +32,7 @@ function DisplayForm() {
       color: showForm ? '#ccc' : 'var(--btn-fg-color)',
       cursor: showForm ? 'auto' : 'pointer',
       marginTop: '21px',
-      ...(showForm ? { borderColor: 'var(--btn-border-color)'} : {}),
+      borderColor: showForm ? 'var(--btn-bg-color)' : '',
     };
 
   const [isLoading, setIsLoading] = useState(false);
@@ -51,11 +51,17 @@ function DisplayForm() {
     } catch (error) {
       console.error("Error creating Todo:", error);
     } finally {
-      setIsLoading(false);
+      //setTimeout(() => {
+        setIsLoading(false);
+      //}, 3000);
+      //setTimeout(() => {
+        //handleCloseForm();
+      //}, 6000);
     }
     }
   };
-  const Plswt = () => (
+  const Plswt = () => {
+    return (
     <div className="plswt" style={{ textAlign: "center", margin: "10px 0" }}>
       <div
         style={{
@@ -78,12 +84,14 @@ function DisplayForm() {
       </style>
     </div>
   );
+}
 
   if (isLoading) {
     return <Plswt />;
   }
   
     const handleCloseForm = () => {
+      //setInputValue("");
       setShowForm(false);
       setInputValue("");
     };
