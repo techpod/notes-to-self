@@ -19,13 +19,31 @@ function App() {
   /*end added*/
 
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
+/*
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
     });
   }, []);
+*/
+  useEffect(() => {
+  const sub = client.models.Todo.observeQuery().subscribe({
+    next: (data) => setTodos([...data.items]),
+    error: (err) => console.error('Todo observeQuery error', err),
+  });
+  return () => sub.unsubscribe();
+}, [setTodos]); // Add setTodos as a dependency to trigger re-render
+/*
+const sub = client.models.Todo.observeQuery().subscribe({
+      next: (data) => {
+        setTodos([...data.items]);
+      },
+    });
+    return () => sub.unsubscribe(); // Cleanup subscription on unmount
+  }, [setTodos]); // Add setTodos as a dependency to trigger re-render
+*/
 
+//console.log("Current Todos:", todos);
   return (
     <main>
       <div className="app-name">Notes To Self</div>

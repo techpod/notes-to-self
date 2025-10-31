@@ -8,6 +8,7 @@ const client = generateClient<Schema>();
 function DisplayForm() {
     const [showForm, setShowForm] = useState(false);
     const [inputValue, setInputValue] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 {/*
     const formWrapStyle = {
       display: showForm ? "block" : "none",
@@ -35,14 +36,12 @@ function DisplayForm() {
       borderColor: showForm ? 'var(--btn-bg-color)' : '',
     };
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const handleButtonClick = async () => {
     setShowForm(true);
     setTimeout(() => {
     document.getElementById("txt-area")?.focus();
     }, 20);
-
+/*
     if (inputValue !== "") {
       setIsLoading(true);
       try {
@@ -52,6 +51,24 @@ function DisplayForm() {
         console.error("Error creating Todo:", error);
       } finally {
           setIsLoading(false);
+      }
+    }
+   */
+  
+     if (inputValue.trim() !== "") {
+      setIsLoading(true);
+      try {
+      await client.models.Todo.create({ content: inputValue });
+      setInputValue(""); // Clear the input field
+      setShowForm(false); // Close the form
+      // Optionally, trigger a re-render or update the UI with the new Todo
+      //const newTodos = await client.models.Todo.list(); // Fetch the updated list of Todos
+      // Update state with the new list to trigger a re-render
+      //console.log("Updated Todos:", newTodos.data); // Log or update state with the new list
+      } catch (error) {
+      console.error("Error creating Todo:", error);
+      } finally {
+      setIsLoading(false);
       }
     }
   };
