@@ -19,13 +19,13 @@ function App() {
   /*end added*/
 
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-/*
+
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
     });
   }, []);
-*/
+/*
   useEffect(() => {
   const sub = client.models.Todo.observeQuery().subscribe({
     next: (data) => setTodos([...data.items]),
@@ -33,7 +33,7 @@ function App() {
   });
   return () => sub.unsubscribe();
 }, [setTodos]); // Add setTodos as a dependency to trigger re-render
-/*
+
 const sub = client.models.Todo.observeQuery().subscribe({
       next: (data) => {
         setTodos([...data.items]);
@@ -44,6 +44,9 @@ const sub = client.models.Todo.observeQuery().subscribe({
 */
 
 //console.log("Current Todos:", todos);
+const updateTodos = (newTodos: Array<Schema["Todo"]["type"]>) => {
+  setTodos(newTodos);
+};
   return (
     <main>
       <div className="app-name">Notes To Self</div>
@@ -75,7 +78,8 @@ const sub = client.models.Todo.observeQuery().subscribe({
       {/*end added*/}
       {/*<button onClick={createTodo}>+ Add New Note</button>*/}
       {/*<button id="so-btn" onClick={signOut}>Sign out</button>*/}
-      <DisplayForm updateState={setTodos}/>
+      {/*<DisplayForm updateState={setTodos}/>*/}
+      <DisplayForm updateState={updateTodos}/>
       <ul>
         {todos.map((todo) => (
           <li
