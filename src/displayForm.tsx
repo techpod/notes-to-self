@@ -70,13 +70,13 @@ function DisplayForm( { updateState }: { updateState: (todos: Array<Schema["Todo
       } catch (error) {
       console.error("Error creating Todo:", error);
       } finally {
+        setIsLoading(false);
         setTimeout(() => {
           const sub = client.models.Todo.observeQuery().subscribe({
             next: (data) => updateState([...data.items]),
             error: (err) => console.error('Todo observeQuery error', err),
           });
           sub.unsubscribe();
-          setIsLoading(false);
           }, 5000);
         }
         
