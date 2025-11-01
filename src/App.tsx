@@ -19,13 +19,13 @@ function App() {
   /*end added*/
 
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
+/*
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
     });
   }, []);
-/*
+*/
   useEffect(() => {
   const sub = client.models.Todo.observeQuery().subscribe({
     next: (data) => setTodos([...data.items]),
@@ -33,7 +33,7 @@ function App() {
   });
   return () => sub.unsubscribe();
 }, [setTodos]); // Add setTodos as a dependency to trigger re-render
-
+/*
 const sub = client.models.Todo.observeQuery().subscribe({
       next: (data) => {
         setTodos([...data.items]);
