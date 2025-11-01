@@ -57,6 +57,7 @@ const handleDelBtnClick = async () => {
     console.error("Error creating Todo:", error);
   } finally {
     setIsLoading(false);
+    setConfirmDelete(false);
   }
 
 }

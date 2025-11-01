@@ -2,10 +2,12 @@ import { useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import './index.css';
+//import updateState from './App.tsx';
 
 const client = generateClient<Schema>();
 
-function DisplayForm() {
+function DisplayForm( { updateState }: { updateState: (todos: Array<Schema["Todo"]["type"]>) => void } ) {
+  //function DisplayForm() {
     const [showForm, setShowForm] = useState(false);
     const [inputValue, setInputValue] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +38,7 @@ function DisplayForm() {
       borderColor: showForm ? 'var(--btn-bg-color)' : '',
     };
 
-  const handleButtonClick = async () => {
+  const HandleButtonClick = async () => {
     setShowForm(true);
     setTimeout(() => {
     document.getElementById("txt-area")?.focus();
@@ -68,8 +70,16 @@ function DisplayForm() {
       } catch (error) {
       console.error("Error creating Todo:", error);
       } finally {
-      setIsLoading(false);
-      }
+        //setTimeout(() => {
+          const sub = client.models.Todo.observeQuery().subscribe({
+            next: (data) => updateState([...data.items]),
+            error: (err) => console.error('Todo observeQuery error', err),
+          });
+          sub.unsubscribe();
+          setIsLoading(false);
+          //}, 3000);
+        }
+        
     }
   };
   const Plswt = () => (
@@ -107,7 +117,7 @@ function DisplayForm() {
   
     return (
       <>
-      <button disabled={showForm} style={nwFrmBtnStyle} onClick={handleButtonClick}>+ Add New Note</button>
+      <button disabled={showForm} style={nwFrmBtnStyle} onClick={HandleButtonClick}>+ Add New Note</button>
       <div style={formWrapStyle}>
           <form>
             <label htmlFor="txt-area">New Note:</label>
@@ -117,7 +127,7 @@ function DisplayForm() {
             placeholder="Enter your note here"
             />
             <button  id="cncl-btn" type="button" onClick={handleCloseForm}>Cancel</button>
-            <button  id="sav-btn" type="button" onClick={handleButtonClick}>Save</button>
+            <button  id="sav-btn" type="button" onClick={HandleButtonClick}>Save</button>
             <div className="spacer">&nbsp;</div>
           </form>
       </div>

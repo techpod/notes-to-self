@@ -18,3 +18,5 @@ frontend:
     paths:
       - .npm/**/*
       - node_modules/**/*
+settings:
+  nodeVersion: "20"
