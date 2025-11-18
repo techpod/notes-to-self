@@ -19,16 +19,27 @@ function App() {
   /*end added*/
 
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
+/*
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
     });
   }, []);
+*/
+
+useEffect(() => {
+  client.models.Todo.observeQuery().subscribe({
+    next: (data) => {
+    const sortedNotes = [...data.items].sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+    setTodos(sortedNotes);
+    },
+  });
+}, []);
 
 const updateTodos = (newTodos: Array<Schema["Todo"]["type"]>) => {
   setTodos(newTodos);
-  console.log("New Todos:", newTodos);
 };
   return (
     <main>
@@ -45,10 +56,10 @@ const updateTodos = (newTodos: Array<Schema["Todo"]["type"]>) => {
           }}
         />
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
       <p>Signed in as: {user?.signInDetails?.loginId}</p>
       </div>
-      <div style={{ display: "flex", justifyContent: "center", margin: "20px 0" }}>
+      <div style={{ marginBottom: "24px", textAlign: "center" }}>
       <button id="top-so-btn" onClick={signOut}>Sign out</button>
       </div>
       <div className="app-border">
@@ -61,7 +72,7 @@ const updateTodos = (newTodos: Array<Schema["Todo"]["type"]>) => {
       {/*end added*/}
       {/*<button onClick={createTodo}>+ Add New Note</button>*/}
       {/*<button id="so-btn" onClick={signOut}>Sign out</button>*/}
-      <DisplayForm updateNotes={updateTodos}/>
+      <DisplayForm updateNotes={updateTodos} />
       <ul>
         {todos.map((todo) => (
           <li
@@ -69,7 +80,7 @@ const updateTodos = (newTodos: Array<Schema["Todo"]["type"]>) => {
             //onClick={() => deleteTodo(todo.id)}
             /*end added*/
             key={todo.id}>{todo.content}
-            <ConfirmDelete id={todo.id}/>
+            <ConfirmDelete id={todo.id} />
             <div></div>
           </li>
         ))}
@@ -80,6 +91,7 @@ const updateTodos = (newTodos: Array<Schema["Todo"]["type"]>) => {
       */}
       {/*end added*/}
       </div>
+      <div className="bottom-space">&nbsp;</div>
     </main>
   );
 }

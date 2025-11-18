@@ -5,7 +5,7 @@ import './index.css';
 
 const client = generateClient<Schema>();
 
-    function ConfirmDelete(props: { id: string }) {
+    function ConfirmDelete(props: { id: string}) {
     const [showConfirmDelete, setConfirmDelete] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const confirmDeletsStyle = {
@@ -78,6 +78,5 @@ const handleDelBtnClick = async () => {
     </>
   ); 
 }
-    
   
   export default ConfirmDelete;

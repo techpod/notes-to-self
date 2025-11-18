@@ -64,8 +64,8 @@ function DisplayForm( { updateNotes }: { updateNotes: (todos: Array<Schema["Todo
         setInputValue(""); // Clear the input field
         setShowForm(false); // Close the form
         const newTodos = await client.models.Todo.list(); // Fetch the updated list of Todos
-        console.log("Updated Todos after creation:", newTodos.data);
-        updateNotes(newTodos.data);
+        const notesByDat = newTodos.data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()); // Sort in reverse chronological order
+        updateNotes(notesByDat);
       } catch (error) {
         console.error("Error creating Todo:", error);
       } finally {
