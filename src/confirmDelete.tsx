@@ -5,7 +5,9 @@ import './index.css';
 
 const client = generateClient<Schema>();
 
-    function ConfirmDelete(props: { id: string}) {
+    //function ConfirmDelete(props: { id: string}) {
+    function ConfirmDelete(props: { updateNotes: (todos: Array<Schema["Todo"]["type"]>) => void; id: string }) {
+    const { updateNotes, id } =  props;
     const [showConfirmDelete, setConfirmDelete] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const confirmDeletsStyle = {
@@ -52,7 +54,11 @@ function handleBtnClick() {
 const handleDelBtnClick = async () => {
   setIsLoading(true);
   try {
-    await client.models.Todo.delete({ id: props.id });
+    //await client.models.Todo.delete({ id: props.id });
+    await client.models.Todo.delete({ id: id });
+    const todosAfterDel = await client.models.Todo.list(); // Fetch the updated list of Todos
+    const notesByDatAfterDel = todosAfterDel.data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()); // Sort in reverse chronological order
+    updateNotes(notesByDatAfterDel);
   } catch (error) {
     console.error("Error creating Todo:", error);
   } finally {

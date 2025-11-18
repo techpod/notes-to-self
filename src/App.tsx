@@ -80,7 +80,7 @@ const updateTodos = (newTodos: Array<Schema["Todo"]["type"]>) => {
             //onClick={() => deleteTodo(todo.id)}
             /*end added*/
             key={todo.id}>{todo.content}
-            <ConfirmDelete id={todo.id} />
+            <ConfirmDelete updateNotes={updateTodos} id={todo.id} />
             <div></div>
           </li>
         ))}
